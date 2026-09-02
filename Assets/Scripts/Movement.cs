@@ -9,67 +9,56 @@ public class Movement : MonoBehaviour
     [Header("Movement")]
     [Tooltip("Speed of movement")]
     public float speed;
-    public enum MovementType
-    {
-        AllDirections,
-        HorizontalOnly,
-        VerticalOnly
-    }
-
-    [SerializeField]
-    private MovementType movementType = 0;
 
     [Header("Platform Movement")]
     [Tooltip("Adjusts Movement for Platform Games")]
     public bool platformSettings = false;
 
-    private float masterSpeed;
+    private Rigidbody2D rb;
+    [Header("Jump Stremgth")]
+    public float jumpStrength = 10f;
 
-
-
+    public int jumps;
 
     void Awake()
-    {
-        masterSpeed = speed;        
+    {   
+        rb = GetComponent<Rigidbody2D>();    
     }
 
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
 
-        if (platformSettings)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position + -Vector3.up * 2, -Vector2.up, 0.1f);
+        if(hit.collider != null)
         {
-            Rigidbody2D rigidBody;
-            rigidBody = GetComponent<Rigidbody2D>();
-            float verticalMovement = rigidBody.velocity.y;
-            if (verticalMovement != 0)
+            if(hit.collider.gameObject.CompareTag("Ground"))
             {
-                speed = masterSpeed / 3;
-            }
-            else
-            {
-                speed = masterSpeed;
+                print("Ground");
+                jumps = 2;
             }
         }
-
-        switch (movementType)
+        Debug.DrawRay(transform.position + -Vector3.up * 2, -Vector2.up * 0.1f, Color.white);
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            case MovementType.HorizontalOnly:
-                vertical = 0f;
-                break;
-            case MovementType.VerticalOnly:
-                horizontal = 0f;
-                break;
+            print("jump pressed");
+            if (jumps > 0)
+            {
+                // Apply an instantaneous upwards force
+                rb.AddForce(Vector2.up * jumpStrength, ForceMode2D.Impulse);
+                jumps -= 1;
+                //canJump = !checkGround;
+            }
         }
+        if(rb.velocity.y > 20)
+            rb.velocity = Vector3.ClampMagnitude(rb.velocity, 20);
 
-        Vector3 movement = new Vector3(horizontal, vertical);
+        Vector3 movement = new Vector3(horizontal, 0);
 
         transform.position += movement * Time.deltaTime * speed;
     }
-
 }
 

@@ -5,17 +5,9 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
+    
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  
 
     void OnCollisionEnter2D(Collision2D collider)
     {
@@ -37,7 +29,12 @@ public class Teleporter : MonoBehaviour
         }
         if(collider.gameObject.tag == "Winner5")
         {
-            SceneManager.LoadScene("Final Boss");
+            SceneManager.LoadScene("Final Level");
         }
+        if(collider.gameObject.tag == "TurtleJR")
+        {
+            SceneManager.LoadScene("YOU FOUND HIM");
+        }
+        
     }
 }

@@ -13,8 +13,12 @@ TagManager:
   - Winner3
   - Winner4
   - Winner5
-  - Letal
   - Lethal
+  - Trick
+  - Sandy
+  - ReallySandy
+  - TurtleJR
+  - Ground
   layers:
   - Default
   - TransparentFX

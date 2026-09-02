@@ -69,7 +69,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 5.unity
     guid: 03eeec33a6a1b344db475b4b7c2a279f
   - enabled: 1
-    path: Assets/Scenes/Final Boss.unity
+    path: Assets/Scenes/Final Level.unity
     guid: 5818383d9d0c5a34eb3d57cabae62b23
   - enabled: 1
     path: Assets/Scenes/Story.unity
@@ -80,4 +80,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level 3.unity
     guid: 89f68e2b83d854f47afb6709fb0c92aa
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: 05c609a94a6771741a1088f9ffd0082e
+  - enabled: 1
+    path: Assets/Scenes/YOU FOUND HIM.unity
+    guid: 57c4b5b6f14ba6b40b5bbd74ce22b80b
   m_configObjects: {}
